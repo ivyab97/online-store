@@ -1,0 +1,38 @@
+.nav-main {
+    width: 100%;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 20px 0;
+    position: absolute;
+}
+  
+.nav-brand {
+    width: 50px;
+}
+  
+.nav-main ul {
+    display: flex;
+}
+  
+.nav-main ul li {
+    padding: 10px;
+}
+  
+.nav-main ul li a {
+    color: #444;
+    padding: 2px;
+}
+  
+.nav-main ul li a:hover {
+    border-bottom: 2px solid #444;
+}
+  
+.nav-main ul.nav-menu {
+    flex: 1;
+    margin-left: 20px;
+}

@@ -1,0 +1,22 @@
+.option{
+    width: 120px;
+    height: 50px;
+    background-color: #555;
+    color: #ffffff;
+    border: solid 1px #555;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.option:hover, .option.active{
+    background-color: #333;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 1.2 ease-in-out;
+}

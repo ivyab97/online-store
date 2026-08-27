@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/aside.css">
+    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/buscador.css">
+    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../css/productInfoAdd.css">
+    <link rel="stylesheet" href="../css/optionButton.css">
+
+    <link rel="stylesheet" href="/css/productModal.css">
+    <link rel="stylesheet" href="/css/alertModal.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+</head>
+<body>
+    
+    <header id="header">
+
+    </header>
+    
+      <div class="showcase">
+        <div class="container-top">
+          <h1 class="name">ADMINSTRACION</h1>  
+          <div class="searcher">
+            <form autocomplete="off">
+              <div>
+                <input type="text" id="search" placeholder="Buscar productos...">
+                  <div class="search__img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                  </div>  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">
+      </div>
+
+        <div class="container">
+
+          <div class="container-left">
+            <div class="container-left__sidebar sidebar">
+              <div class="sidebar__categories-title">
+                <span class="title">
+                  categorias
+                </span>
+                <span id="expand_more-less" class="material-symbols-outlined">
+                  expand_more
+                </span>
+              </div>
+              <div class="sidebar__categories">
+                <ul class="sidebar__list">
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="1" class="checkbox">
+                      <label for="electrodomesticos" class="sidebar_label">Electrodomésticos</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="2" class="checkbox">
+                      <label for="tecnologia" class="sidebar_label">Tecnología y Electrónica</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="3" class="checkbox">
+                      <label for="moda" class="sidebar_label">Moda y Accesorios</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="4" class="checkbox">
+                      <label for="hogar" class="sidebar_label">Hogar y Decoración</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="5" class="checkbox">
+                      <label for="salud" class="sidebar_label">Salud y Belleza</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="6" class="checkbox">
+                      <label for="deportes" class="sidebar_label">Deportes y Ocio</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="7" class="checkbox">
+                      <label for="juguetes" class="sidebar_label">Juguetes y Juegos</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="8" class="checkbox">
+                      <label for="alimentos" class="sidebar_label">Alimentos y Bebidas</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="9" class="checkbox">
+                      <label for="libros" class="sidebar_label">Libros y Material Educativo</label>
+                  </li>
+                  <li class="sidebar__li">
+                      <input type="checkbox" value="10" class="checkbox">
+                      <label for="jardineria" class="sidebar_label">Jardinería y Bricolaje</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+              
+  
+          <div class="content">
+              <div class="content__product">
+
+              </div>
+          </div>
+
+          <div class="cart">
+            <div class="cart__order">
+              <div class="cart__myOrderTitle">
+                <h3>Resumen de Venta</h3>
+              </div>
+              <div class="cart__myOrder myOrder">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <footer class="footer" id="footer">
+        </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/decimal.js@10.3.1/decimal.min.js"></script>
+    <script type="module" src="../js/index.js"></script>
+    
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    
+</body>
+</html>

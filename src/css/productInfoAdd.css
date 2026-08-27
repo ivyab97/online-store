@@ -1,0 +1,71 @@
+.productInfoAdd{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    box-shadow: rgba(181, 129, 108, 1) 0px 8px 34px -25px;
+}
+
+.productInfoAdd__quantity{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.productInfoAdd__name{
+    display: flex;
+    width:80%;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.productInfoAdd__price-button{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.productInfoAdd__price{
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.productAdd__button{
+    background: rgb(234, 227, 227);
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+    width: 90px;
+    height: 28px;
+}
+
+.productAdd__button img{
+    cursor: pointer;
+    width: 9px;
+    height: 9px;
+    margin: 10px;
+}
+
+#iva{
+    font-size: 1em;
+    font-weight: bold;
+    padding-top: 1em;
+    color:rgb(141, 138, 137)
+}
+
+.myOrder__orderPrice{
+    font-size: 1em;
+    font-weight: bold;
+    padding-top: 1em;
+}
+
+.createOrder.option{
+    width: 23em;
+    margin: 1em;
+}

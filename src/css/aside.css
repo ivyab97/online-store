@@ -1,0 +1,53 @@
+.sidebar{
+  width: 400px;
+  border-radius: 6px;
+  padding: 30px;
+  margin: 0px 20px 20px 20px;
+  position: sticky;
+  top: 20px;
+  background-color: #fff;
+  text-transform: capitalize;
+}
+
+.sidebar__categories-title{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.sidebar__categories .expand{
+  display: none;
+}
+
+
+.sidebar__list{
+    width: fit-content;
+}
+
+.sidebar__li{
+  margin-top: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sidebar__li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.sidebar_label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox:checked + .sidebar_label {
+  text-decoration: line-through;
+  color: rgb(180, 173, 173)
+}

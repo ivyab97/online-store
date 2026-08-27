@@ -1,0 +1,146 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  font-family: 'Sen-Regular';
+  user-select: none;
+}
+
+@font-face {
+  font-family: 'Sen-Regular';
+  src: url(/fonts/Sen/Sen-Regular.ttf);
+  font-weight: lighter;
+  font-style: lighter;
+}
+
+
+body{
+  min-height: 100vh;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: #e9e9e9;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+ul {
+  list-style: none;
+}
+
+.divFlex{
+  display: flex;
+  align-items: center;
+}
+
+.showcase {
+  width: 100%;
+  height: 300px;
+  background: url("../Image/R.jpeg") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+  color: #fff;
+}
+
+.container-top{
+  width: 25%;
+  position: absolute;
+  left: 60px;
+}
+
+.name{
+  margin-bottom: 15px;
+}
+
+.separator{
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: solid 1px rgba(0, 0, 0, .3)
+}
+
+.openClosed{
+  display: flex;
+  align-items: center;
+  margin-left: 35px;
+  font-size: 16px;
+}
+
+.container {
+display: flex;
+padding-bottom: 40px;
+}
+
+#product-not-found {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.content {
+  width: 1020px;
+  flex:1;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.filtro{
+  display: none;
+}
+
+
+.containerModal{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#container {
+  min-height: 500px; /* Ajusta este valor según sea necesario */
+  position: relative;
+}
+
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+}
+
+.product {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.product.enter {
+  opacity: 1;
+}
+
+.product.exit {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+

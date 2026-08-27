@@ -1,0 +1,121 @@
+.content__product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product__card {
+    width: 310px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.product__card:hover{
+    box-shadow: 0 15px 20px 0 rgba(0,0,0,.25);
+}
+
+.card__img-container {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    position: relative; /* Para posicionar correctamente el borde */
+}
+
+.card__img-container img {
+    width: 100%; /* Ajusta el tamaño de la imagen al contenedor */
+    display: block; /* Asegura que la imagen no tenga espacios extra */
+}
+
+.card__img-container::after {
+    content: ""; /* Crea un elemento pseudo ::after */
+    position: absolute; /* Lo posiciona en relación al contenedor */
+    bottom: 0; /* Lo sitúa al final del contenedor */
+    left: 0; /* Lo sitúa a la izquierda del contenedor */
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    height: 1px; /* Define la altura de la línea */
+    background-color: #e9e9e9; /* Cambia el color de la línea según tu preferencia */
+}
+.card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.card__info {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info__name {
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.info__category {
+    margin: 5px 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #999;
+}
+
+.card__price-container {
+    margin-top: auto;
+}
+
+.card__price {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.card__price--original {
+    font-size: 0.8em;
+    text-decoration: line-through;
+    color: #999;
+    
+}
+
+.card__price--discounted {
+    font-size: 1.2em;
+    padding: 0.2em 0;
+}
+
+.card__discount {
+    font-size: .9em;
+    color: green;
+}
+
+.card__discount-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.button__addProduct {
+    align-self: flex-end;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #e9e9e9;
+    cursor: pointer;
+}
+
+.button__addProduct .more {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    color: #e9e9e9;
+}

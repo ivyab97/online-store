@@ -1,0 +1,52 @@
+.opacity {
+    opacity: 0.5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info div {
+    margin-bottom: 10px;
+}
+
+.products table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.products th, .products td {
+    border: 0.1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.products th {
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: right;
+}
+
+.material-symbols-outlined{
+    margin: 0 0 0 30em ;
+    border: solid 2px #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.material-symbols-outlined:hover{
+    border: solid 2px black;
+}
