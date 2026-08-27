@@ -10,12 +10,12 @@ export function productModal(data) {
                 <div class="productInfoModal__info info">
                     <div class="info__title">
                         <p>
-                            ${data.name}
+                            ${data.title}
                         </p> 
                         
                     </div>
                     <div class="info__img">
-                        <img src="${data.imageUrl}" alt="productImagen">
+                        <img src="${data.thumbnail}" alt="productImagen">
                     </div>
                     <div class="info__productInfo productInfo">
                         

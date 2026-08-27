@@ -1,13 +1,8 @@
 import { apiServiceFalledDescription, apiServiceFalledTitle, createAlertModal } from "../EventFunctions/alert.js";
 
-const urlBase = "http://localhost:5007/api/Product";
+const urlBase = "https://dummyjson.com/products";
 
 export const getProduct = async (idProduct) => {
-    // Check in LocalStorage - Memoization
-    const cachedProduct = localStorage.getItem(`memoizationCache_${idProduct}`);
-    if (cachedProduct) {
-        return JSON.parse(cachedProduct);
-    }
 
     const url = `${urlBase}/${idProduct}`;
     let result = null;
@@ -41,12 +36,16 @@ export const getProduct = async (idProduct) => {
 }
 
 
-export const getProductByFilters = async (name, limit, offset, categories) => {
-    var url = `${urlBase}?`;
+export const getProductByFilters = async (name, limit, offset, category) => {
+    var url = `${urlBase}/`;
 
     if(name)
     {
-        url += `name=${name}`;
+        url += `search?q=${name}`;
+    }
+    else if(category)
+    {
+        url += `category/${category}?`
     }
     if(limit)
     {
@@ -56,14 +55,7 @@ export const getProductByFilters = async (name, limit, offset, categories) => {
     if(offset)
     {
         if (name || limit) {url += `&`;}
-        url += `offset=${offset}`;
-    }
-    if(categories)
-    {
-        categories.forEach(id => {
-            if (name || limit || offset) {url += `&`;}
-            url += `categories=${id}`;
-        });
+        url += `skip=${offset}`;
     }
     let result = []
     try {

@@ -7,14 +7,13 @@ export const productSearcherAndPrinter = async (container) => {
   const handleSearchInputChange = async (event) => {
     event.preventDefault();
     showLoadingIndicator(container);
-    updateCategoriesInLocalStorage();
     await performSearch();
   };
 
   const performSearch = async () => {
     const searchValue = document.getElementById("search").value;
-    let categories = JSON.parse(localStorage.getItem('categories_checkboxes')) || [];
-    let data = await getProductByFilters(searchValue, 12, 0, categories);
+    const category = localStorage.getItem('category');
+    let data = await getProductByFilters(searchValue, 10, 0, category);
 
     const currentProducts = container.querySelectorAll('.product');
     currentProducts.forEach(product => {
@@ -26,9 +25,8 @@ export const productSearcherAndPrinter = async (container) => {
         }
       });
     });
-
     const fragment = document.createDocumentFragment();
-    data.forEach((producto) => {
+    data.products.forEach((producto) => {
       const productElement = document.createElement('div');
       productElement.className = 'product enter';
       productElement.innerHTML = product(producto);
@@ -40,17 +38,6 @@ export const productSearcherAndPrinter = async (container) => {
     checkProductNotFound(container);
 
     hideLoadingIndicator(container);
-  };
-
-  const updateCategoriesInLocalStorage = () => {
-    const checkboxes = document.querySelectorAll(".checkbox");
-    let categories = [];
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        categories.push(checkbox.value);
-      }
-    });
-    localStorage.setItem('categories_checkboxes', JSON.stringify(categories));
   };
 
   const showLoadingIndicator = (container) => {

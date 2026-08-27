@@ -15,35 +15,42 @@ export const clickExpand = () => {
     });
 }
 
-
 export const clickCategorySearch = () => {
-    document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.checkbox');
 
-    // Cargar el estado guardado de los checkbox
+    const checkboxes = document.querySelectorAll('.checkbox');
+    const savedCategory = localStorage.getItem('category');
+
+    // Recuperar categoría guardada
     checkboxes.forEach(checkbox => {
-        const savedState = JSON.parse(localStorage.getItem("categories_checkboxes")) || [];
-        if (savedState.includes(checkbox.value)) {
+        if (checkbox.value === savedCategory) {
             checkbox.checked = true;
         }
     });
 
-    // Manejar el evento change para cada checkbox
+    // Manejar selección
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const savedState = JSON.parse(localStorage.getItem("categories_checkboxes")) || [];
+
+        checkbox.addEventListener('change', () => {
+
             if (checkbox.checked) {
-                if (!savedState.includes(checkbox.value)) {
-                    savedState.push(checkbox.value);
-                }
+
+                // Desmarcar las demás
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+
+                // Guardar categoría
+                localStorage.setItem(
+                    'category',
+                    checkbox.value
+                );
+
             } else {
-                const index = savedState.indexOf(checkbox.value);
-                if (index > -1) {
-                    savedState.splice(index, 1);
-                }
+
+                localStorage.removeItem('category');
             }
-            localStorage.setItem("categories_checkboxes", JSON.stringify(savedState));
         });
     });
-  });
-}
+};

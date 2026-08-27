@@ -22,9 +22,9 @@ export const IndexRender = async () => {
     await fillCategories();
     clickCategorySearch();
     clickExpand();
-    //await productSearcherAndPrinter(_container);
-    //addProduct();
-    //await detailProduct();
+    await productSearcherAndPrinter(_container);
+    addProduct();
+    await detailProduct();
     //await registerSale();
   })
 }
