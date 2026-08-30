@@ -25,7 +25,7 @@ export const IndexRender = async () => {
     await productSearcherAndPrinter(_container);
     addProduct();
     await detailProduct();
-    //await registerSale();
+    await registerSale();
   })
 }
 

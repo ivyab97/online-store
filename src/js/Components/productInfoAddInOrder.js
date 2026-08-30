@@ -1,6 +1,6 @@
 export const productInfoAddInOrder = (id, name, priceWithDiscount, originalPrice, discount) =>{
     return `
-    <div class="productInfoAdd" id="${"productAdd"+id}" value="${id}" price="${originalPrice}" discount="${discount}">
+    <div class="productInfoAdd" id="${"productAdd"+id}" value="${id}" price="${originalPrice}" discount="${discount}" name="${name}">
         <div class="productInfoAdd__quantity">
             <p class="quantity">1</p>
             <p>x</p>

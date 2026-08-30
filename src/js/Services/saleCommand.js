@@ -1,12 +1,14 @@
 import { apiServiceFalledDescription, apiServiceFalledTitle, createAlertModal, orderCompletedOptional, orderCompletedTitle } from "../EventFunctions/alert.js";
 
-const urlBase = "http://localhost:5007/api/Sale";
+const urlBase = "https://dummyjson.com/carts";
 
 
 export const createSale = async (saleRequest) => {
+    var url = `${urlBase}/add`;
+
     let responseData = null;
     try {
-        const response = await fetch(urlBase, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,11 +19,9 @@ export const createSale = async (saleRequest) => {
         if (response.ok)
         {
             responseData = await response.json();
-            console.log(responseData.id)
             createAlertModal(orderCompletedTitle, orderCompletedOptional+responseData.id);
         }
         else {
-            console.log(response)
             throw new Error('Error al registrar la venta');
         }
 

@@ -22,6 +22,7 @@ export const registerSale = async () => {
             let totalPay = 0;
 
             let products = [];
+            let cardProducts = [];
 
             productInfo.forEach(product => 
             {
@@ -29,22 +30,19 @@ export const registerSale = async () => {
                 let quantity = parseInt(product.getElementsByClassName("quantity")[0].textContent);
                 let price = parseFloat(product.getAttribute("price"));
                 let discount = parseInt(product.getAttribute("discount"));
-                console.log(price)
-                console.log(discount)
+                let name = product.
                 subtotal = subtotal + (quantity * price);
                 totalDiscount = totalDiscount + ((quantity * price) * (discount / 100));
-                console.log(totalDiscount)
-                console.log(subtotal)
-                products.push({"productId": productId, "quantity": quantity});
+                products.push({"id": productId, "quantity": quantity});
+                cardProducts.push({"id": productId, "name": name, "price": price, "quantity": quantity});
             });
 
-            totalPay = (subtotal - totalDiscount) * 1.21; //Formula especificada en los requerimientos
-            console.log(totalPay);
-            await createSale({"products": products, "totalPayed": totalPay}); 
-
-            localStorage.removeItem("myOrderInfo");
-            let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
+            totalPay = (subtotal - totalDiscount) * 1.21; //IVA
+            await createSale({"userId": 1, "products": products});
+            saveSale(cardProducts, totalPay); //Habria que persistir en localstorage la api solo simula
             
+            let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
+            localStorage.removeItem("myOrderInfo");
             sale.innerHTML = emptyOrder();
         }
       }    
@@ -52,6 +50,20 @@ export const registerSale = async () => {
   });    
 }
 
+const saveSale = (card, totalPay) => {
+    const sale = {
+        id: crypto.randomUUID(),
+        date: new Date().toISOString(),
+        card,
+        totalPay
+    };
+
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
+
+    sales.push(sale);
+
+    localStorage.setItem("sales", JSON.stringify(sales));
+};
 
 
 export const searchSale = async () => {
