@@ -1,16 +1,11 @@
-import { getProduct } from "../Services/productQueries.js";
-
-
-export const saleModal = async (data) => {
+export const saleModal = (data) => {
     let productsHTML = "";
-    let product;
-    for (const prod of data.products) 
+    for (const prod of data.card) 
     {
-        product = await getProduct(prod.productId);
         productsHTML += `
             <tr>
-                <td>${prod.productId}</td>
-                <td>${product.name}</td>
+                <td>${prod.id}</td>
+                <td>${prod.name}</td>
                 <td>${prod.quantity}</td>
                 <td>$${prod.price}</td>
                 <td>${prod.discount}</td>
@@ -24,7 +19,12 @@ export const saleModal = async (data) => {
                     close
             </span>
             <div>ID VENTA: ${data.id}</div>
-            <p class="opacity">FECHA: 20 de mayo de 2020</p>
+            <p class="opacity">FECHA: ${new Date(data.date).toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                timeZone: 'UTC'
+            })}</p>
         </div>
         <div class="products">
             <table>
@@ -43,12 +43,12 @@ export const saleModal = async (data) => {
             </table>
         </div>
         <div class="opacity">
-            <p>Subtotal: $${data.subtotal}</p>
+            <p>Subtotal: $${parseFloat(data.subtotal).toFixed(2)}</p>
             <p>Descuento total: $${parseFloat(data.totalDiscount).toFixed(2)}</p>
-            <p>IVA: %${(data.taxes * 100) - 100}</p>
+            <p>IVA: %21</p>
         </div>
         <div class="total">
-            <p>TOTAL A PAGAR: $${data.totalPay}</p>
+            <p>TOTAL A PAGAR: $${parseFloat(data.totalPay).toFixed(2)}</p>
         </div>
     `;
 }

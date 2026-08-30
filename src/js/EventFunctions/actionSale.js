@@ -20,6 +20,7 @@ export const registerSale = async () => {
             let subtotal = 0;
             let totalDiscount = 0;
             let totalPay = 0;
+            let totalQuantity = 0;
 
             let products = [];
             let cardProducts = [];
@@ -29,18 +30,19 @@ export const registerSale = async () => {
                 let productId = product.getAttribute("value");
                 let quantity = parseInt(product.getElementsByClassName("quantity")[0].textContent);
                 let price = parseFloat(product.getAttribute("price"));
-                let discount = parseInt(product.getAttribute("discount"));
+                let discount = parseFloat(product.getAttribute("discount"));
                 let name = product.getAttribute("name")
 
                 subtotal = subtotal + (quantity * price);
                 totalDiscount = totalDiscount + ((quantity * price) * (discount / 100));
+                totalQuantity = totalQuantity + quantity; 
                 products.push({"id": productId, "quantity": quantity});
-                cardProducts.push({"id": productId, "name": name, "price": price, "quantity": quantity});
+                cardProducts.push({"id": productId, "name": name, "price": price, "quantity": quantity, "discount": discount});
             });
 
             totalPay = (subtotal - totalDiscount) * 1.21; //IVA
             await createSale({"userId": 1, "products": products});
-            saveSale(cardProducts, totalPay); //Habria que persistir en localstorage la api solo simula
+            saveSale(cardProducts, totalQuantity, subtotal, totalDiscount, totalPay); //Habria que persistir en localstorage la api solo simula
 
             let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
             localStorage.removeItem("myOrderInfo");
@@ -51,11 +53,14 @@ export const registerSale = async () => {
   });    
 }
 
-const saveSale = (card, totalPay) => {
+const saveSale = (card, quantity, subtotal, totalDiscount, totalPay) => {
     const sale = {
         id: crypto.randomUUID(),
         date: new Date().toISOString(),
         card,
+        quantity,
+        subtotal,
+        totalDiscount,
         totalPay
     };
 
@@ -127,7 +132,6 @@ export const searchSale = async () => {
 
       try {
         const saleData = await getSaleByDate(from, to);
-
         saleList.innerHTML = '';
         if(saleData.length !== 0){
           saleList.innerHTML = saleTableHeader();
@@ -164,7 +168,7 @@ export const detailSale = async () => {
       {
         //Get Product Info
         let saleId = e.target.getAttribute("value");
-        let saleInfo = await getSaleById(saleId);
+        let saleInfo = getSaleById(saleId);
         if(saleInfo)
         {
           //Create Modal

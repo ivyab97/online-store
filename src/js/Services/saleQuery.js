@@ -1,58 +1,34 @@
-const urlBase = "http://localhost:5007/api/Sale";
+export const getSaleByDate = (from, to) => {
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
 
-export const getSaleByDate = async (from, to) => {
-    var url = `${urlBase}?`;
-    let result = []
+    return sales.filter(sale => {
+        const saleDate = new Date(sale.date);
 
-    if(from)
-    {
-        url += `from=${from}`;
-    }
-    if(to)
-    {
-        if(from){url += `&`;}
-        url += `to=${to}`;
-    }
-    try {
-        let response = await fetch(url);
-        if(response.ok){
-            result = await response.json();
+        // Convertimos la fecha de la venta a YYYY-MM-DD en UTC
+        const saleDay = saleDate.toISOString().split("T")[0];
+
+        if (from && saleDay < from) {
+            return false;
         }
-    } catch (error) {
-        if(error.name === "TypeError" && error.message === "Failed to fetch")
-        {
-            createAlertModal(apiServiceFalledTitle, apiServiceFalledDescription);
+
+        if (to && saleDay > to) {
+            return false;
         }
-    }  
-    return result;    
+
+        return true;
+    });
+};
+
+
+export const getSaleById = (idSale) => {
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
+
+    const sale = sales.find(sale => sale.id === idSale);
+
+    if (!sale) {
+        console.log("Sale not found");
+        return null;
 }
 
-
-export const getSaleById = async (idSale) => {
-    const url = `${urlBase}/${idSale}`;
-    let result = null;
-    let statusCodeMessage = null;
-
-    try {
-        const response = await fetch(url);
-
-        if (response.ok) {
-            result = await response.json();
-        }
-        if (response.status===400)
-        {
-            statusCodeMessage = await response.json();
-            console.log(statusCodeMessage.message);
-        }
-        if (response.status===404)
-        {
-            statusCodeMessage = await response.json();
-            console.log(statusCodeMessage.message);
-        }
-    } catch (error) {
-        if (error.name === "TypeError" && error.message === "Failed to fetch") {
-            createAlertModal(apiServiceFalledTitle, apiServiceFalledDescription);
-        }
-    }
-    return result;
-}
+    return sale;
+};

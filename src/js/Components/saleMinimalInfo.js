@@ -8,8 +8,8 @@ export function saleMinimalInfo(data) {
       <tr>
           <td>${data.id}</td>
           <td>${formatDate(data.date)}</td>
-          <td>${data.totalQuantity}</td>
-          <td>$${data.totalPay}</td>
+          <td>${data.quantity}</td>
+          <td>$${parseFloat(data.totalPay).toFixed(2)}</td>
           <td><button class="detailButton optionButton option" value="${data.id}">Ver Detalles</button></td>
       </tr>
     `;
