@@ -30,7 +30,8 @@ export const registerSale = async () => {
                 let quantity = parseInt(product.getElementsByClassName("quantity")[0].textContent);
                 let price = parseFloat(product.getAttribute("price"));
                 let discount = parseInt(product.getAttribute("discount"));
-                let name = product.
+                let name = product.getAttribute("name")
+
                 subtotal = subtotal + (quantity * price);
                 totalDiscount = totalDiscount + ((quantity * price) * (discount / 100));
                 products.push({"id": productId, "quantity": quantity});
@@ -40,7 +41,7 @@ export const registerSale = async () => {
             totalPay = (subtotal - totalDiscount) * 1.21; //IVA
             await createSale({"userId": 1, "products": products});
             saveSale(cardProducts, totalPay); //Habria que persistir en localstorage la api solo simula
-            
+
             let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
             localStorage.removeItem("myOrderInfo");
             sale.innerHTML = emptyOrder();
