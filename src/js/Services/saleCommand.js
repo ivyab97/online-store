@@ -2,7 +2,6 @@ import { apiServiceFalledDescription, apiServiceFalledTitle, createAlertModal, o
 
 const urlBase = "https://dummyjson.com/carts";
 
-
 export const createSale = async (saleRequest) => {
     var url = `${urlBase}/add`;
 
@@ -19,7 +18,7 @@ export const createSale = async (saleRequest) => {
         if (response.ok)
         {
             responseData = await response.json();
-            createAlertModal(orderCompletedTitle, orderCompletedOptional+responseData.id);
+            return true;
         }
         else {
             throw new Error('Error al registrar la venta');

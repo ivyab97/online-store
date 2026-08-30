@@ -4,6 +4,7 @@ import { saleMinimalInfo } from "../Components/saleMinimalInfo.js";
 import { saleModal } from "../Components/saleModal.js";
 import { emptyOrder } from "../Components/emptyOrder.js";
 import { saleTableHeader } from "../Components/saleTableHeader.js";
+import { createAlertModal, orderCompletedOptional, orderCompletedTitle } from "../EventFunctions/alert.js";
 
 
 export const registerSale = async () => {
@@ -27,26 +28,27 @@ export const registerSale = async () => {
 
             productInfo.forEach(product => 
             {
-                let productId = product.getAttribute("value");
-                let quantity = parseInt(product.getElementsByClassName("quantity")[0].textContent);
-                let price = parseFloat(product.getAttribute("price"));
-                let discount = parseFloat(product.getAttribute("discount"));
-                let name = product.getAttribute("name")
-
-                subtotal = subtotal + (quantity * price);
-                totalDiscount = totalDiscount + ((quantity * price) * (discount / 100));
-                totalQuantity = totalQuantity + quantity; 
-                products.push({"id": productId, "quantity": quantity});
-                cardProducts.push({"id": productId, "name": name, "price": price, "quantity": quantity, "discount": discount});
+              let productId = product.getAttribute("value");
+              let quantity = parseInt(product.getElementsByClassName("quantity")[0].textContent);
+              let price = parseFloat(product.getAttribute("price"));
+              let discount = parseFloat(product.getAttribute("discount"));
+              let name = product.getAttribute("name")
+              subtotal = subtotal + (quantity * price);
+              totalDiscount = totalDiscount + ((quantity * price) * (discount / 100));
+              totalQuantity = totalQuantity + quantity; 
+              products.push({"id": productId, "quantity": quantity});
+              cardProducts.push({"id": productId, "name": name, "price": price, "quantity": quantity, "discount": discount});
             });
 
             totalPay = (subtotal - totalDiscount) * 1.21; //IVA
-            await createSale({"userId": 1, "products": products});
-            saveSale(cardProducts, totalQuantity, subtotal, totalDiscount, totalPay); //Habria que persistir en localstorage la api solo simula
+            let cart = await createSale({"userId": 1, "products": products});
+            if(cart){
+              saveSale(cardProducts, totalQuantity, subtotal, totalDiscount, totalPay); //Habria que persistir en localstorage la api solo simula
+              let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
+              localStorage.removeItem("myOrderInfo");
+              sale.innerHTML = emptyOrder();
+            }
 
-            let sale = document.getElementsByClassName("cart__myOrder myOrder")[0];
-            localStorage.removeItem("myOrderInfo");
-            sale.innerHTML = emptyOrder();
         }
       }    
     }
@@ -69,6 +71,7 @@ const saveSale = (card, quantity, subtotal, totalDiscount, totalPay) => {
     sales.push(sale);
 
     localStorage.setItem("sales", JSON.stringify(sales));
+    createAlertModal(orderCompletedTitle, orderCompletedOptional, sale.id);
 };
 
 

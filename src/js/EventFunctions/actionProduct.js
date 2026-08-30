@@ -24,12 +24,11 @@ export const addProduct = () => {
                 myOrderInfo = myOrder.getElementsByClassName("myOrder__productInfo")[0];
                 
             }
-
             let productInfo = e.target.closest(".product__card");
             let productId = e.target.value;
             let name = productInfo.getElementsByTagName("h4")[0].textContent;
             let originalPrice;
-            let price = parseFloat(productInfo.getElementsByClassName("card__price")[0].getAttribute("value"));
+            let price = parseFloat(productInfo.getElementsByClassName("card__price")[0].getAttribute("value")).toFixed(2);
             originalPrice = parseFloat(productInfo.getElementsByClassName("card__price")[0].getAttribute("original-price"));;
             let discount = parseFloat(productInfo.getElementsByClassName("card__price")[0].getAttribute("discount"));
           
