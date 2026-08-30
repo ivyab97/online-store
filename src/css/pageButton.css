@@ -1,0 +1,31 @@
+/* Paiginacion ------------------------------------------ */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.page-button {
+    border: none;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.page-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+.page-button.active {
+    background-color:var(--green);;
+    color: #333;
+    font-weight: bold;
+}

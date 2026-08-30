@@ -1,7 +1,6 @@
 import { getProductByFilters } from "../Services/productQueries.js";
 import { product } from "../product.js";
-
-
+import { renderPaginationControls } from "./pagination.js";
 
 export const productSearcherAndPrinter = async (container) => {
   const handleSearchInputChange = async (event) => {
@@ -13,7 +12,11 @@ export const productSearcherAndPrinter = async (container) => {
   const performSearch = async () => {
     const searchValue = document.getElementById("search").value;
     const category = localStorage.getItem('category');
-    let data = await getProductByFilters(searchValue, 10, 0, category);
+
+    const limit = 10;
+    const skip = Number(localStorage.getItem("skip")) || 0;
+
+    let data = await getProductByFilters(searchValue, limit, skip, category);
 
     const currentProducts = container.querySelectorAll('.product');
     currentProducts.forEach(product => {
@@ -38,6 +41,14 @@ export const productSearcherAndPrinter = async (container) => {
     checkProductNotFound(container);
 
     hideLoadingIndicator(container);
+
+    renderPaginationControls(data, limit, (page) => {
+      const newSkip = (page - 1) * limit;
+
+      localStorage.setItem("skip", newSkip);
+
+      performSearch();
+    });
   };
 
   const showLoadingIndicator = (container) => {
@@ -80,7 +91,8 @@ export const productSearcherAndPrinter = async (container) => {
     }
   };
 
-  document.getElementById("search").addEventListener("input", handleSearchInputChange);
+  const searchButton = document.querySelector(".search__img");
+  searchButton.addEventListener("click", handleSearchInputChange);
 
   const checkboxes = document.querySelectorAll(".checkbox");
   checkboxes.forEach(checkbox => {

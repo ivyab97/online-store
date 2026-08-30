@@ -1,3 +1,5 @@
+import { resetPagination } from "./pagination.js";
+
 export const clickExpand = () => {
   let _aside = document.querySelectorAll(".sidebar__categories-title")[0]
   let _btnExpand = document.getElementById("expand_more-less");
@@ -29,11 +31,9 @@ export const clickCategorySearch = () => {
 
     // Manejar selección
     checkboxes.forEach(checkbox => {
-
         checkbox.addEventListener('change', () => {
 
             if (checkbox.checked) {
-
                 // Desmarcar las demás
                 checkboxes.forEach(otherCheckbox => {
                     if (otherCheckbox !== checkbox) {
@@ -47,8 +47,8 @@ export const clickCategorySearch = () => {
                     checkbox.value
                 );
 
+                resetPagination();
             } else {
-
                 localStorage.removeItem('category');
             }
         });

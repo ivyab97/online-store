@@ -125,8 +125,6 @@ const subtractProduct = (orderProductId, productPrice) => {
                 productInfo.remove();
             }
         });
-        
-        
     }
 }
 

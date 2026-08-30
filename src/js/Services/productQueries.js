@@ -36,7 +36,7 @@ export const getProduct = async (idProduct) => {
 }
 
 
-export const getProductByFilters = async (name, limit, offset, category) => {
+export const getProductByFilters = async (name, limit, skip, category) => {
     var url = `${urlBase}/`;
 
     if(name)
@@ -52,10 +52,10 @@ export const getProductByFilters = async (name, limit, offset, category) => {
         if(name){url += `&`;}
         url += `limit=${limit}`;
     }
-    if(offset)
+    if(skip)
     {
         if (name || limit) {url += `&`;}
-        url += `skip=${offset}`;
+        url += `skip=${skip}`;
     }
     let result = []
     try {
