@@ -56,7 +56,6 @@ export const addProduct = () => {
             let price = parseFloat(productInfo.getElementsByClassName("productInfoAdd__price")[0].getAttribute("value"));
 
             subtractProduct(productId, price);
-
         }
                
         checkEmptyOrder(myOrder, myOrderInfo);
@@ -84,7 +83,6 @@ const checkEmptyOrder = (orderContainer, orderInfo) => {
 const sumProduct = (orderProductId, productPrice) => {
     let productInfo = document.getElementById(orderProductId);
     let statusOrder = false;
-    
     if(productInfo)
     {
         let quantity = Array.from(productInfo.getElementsByClassName("quantity"));

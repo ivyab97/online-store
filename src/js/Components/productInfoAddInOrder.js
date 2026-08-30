@@ -9,7 +9,7 @@ export const productInfoAddInOrder = (id, name, priceWithDiscount, originalPrice
             <p>${name}</p>
         </div>
         <div class="productInfoAdd__price-button">
-            <div class="productInfoAdd__price" value="${originalPrice}">
+            <div class="productInfoAdd__price" value="${priceWithDiscount}">
                 <p>$</p>
                 <p class="subTotalPrice">${priceWithDiscount}</p>
             </div>
