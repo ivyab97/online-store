@@ -37,38 +37,56 @@ export const getProduct = async (idProduct) => {
 
 
 export const getProductByFilters = async (name, limit, skip, category) => {
-    var url = `${urlBase}/`;
 
-    if(name)
-    {
-        url += `search?q=${name}`;
+    let url;
+
+    if (name) {
+        url = new URL(`${urlBase}/search`);
+        url.searchParams.set("q", name);
     }
-    else if(category)
-    {
-        url += `category/${category}?`
+    else if (category) {
+        url = new URL(`${urlBase}/category/${category}`);
     }
-    if(limit)
-    {
-        if(name){url += `&`;}
-        url += `limit=${limit}`;
+    else {
+        url = new URL(urlBase);
     }
-    if(skip)
-    {
-        if (name || limit) {url += `&`;}
-        url += `skip=${skip}`;
+
+    if (limit !== null && limit !== undefined) {
+        url.searchParams.set("limit", limit);
     }
-    let result = []
+
+    if (skip !== null && skip !== undefined) {
+        url.searchParams.set("skip", skip);
+    }
+
+    let result = [];
+
     try {
-        let response = await fetch(url);
-        if(response.ok){
+
+        const response = await fetch(url);
+
+        if (response.ok) {
             result = await response.json();
         }
-    } catch (error) {
-        if(error.name === "TypeError" && error.message === "Failed to fetch")
-        {
-            createAlertModal(apiServiceFalledTitle, apiServiceFalledDescription);
+        else {
+            console.error(`Error HTTP: ${response.status}`);
         }
-    }  
-    return result;    
+
+    }
+    catch (error) {
+
+        if (
+            error.name === "TypeError" &&
+            error.message === "Failed to fetch"
+        ) {
+            createAlertModal(
+                apiServiceFalledTitle,
+                apiServiceFalledDescription
+            );
+        }
+
+    }
+
+    return result;
 }
 

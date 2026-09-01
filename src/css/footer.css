@@ -1,53 +1,134 @@
+/* =========================
+   FOOTER - MOBILE FIRST
+========================= */
+
 .footer {
+    width: 100%;
+
+    padding: 30px 20px 15px;
+
     background-color: #444;
     color: #fff;
-    align-self: flex-end;
-    padding: 20px 0;
-    font-size: 14px;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+/* =========================
+   SECCIONES
+========================= */
+
+.footer-section {
     width: 100%;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-section {
-    flex: 1;
-    margin: 0 10px;
-    min-width: 200px;
-}
-
 .footer-section h4 {
-    margin-bottom: 15px;
-    font-size: 16px;
+    margin-bottom: 12px;
+
+    font-size: 1rem;
+}
+
+.footer-section p {
+    margin-bottom: 6px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
 }
 
 .footer-section ul {
-    list-style: none;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
 }
 
-.footer-section ul li {
-    margin-bottom: 10px;
+.footer-section a {
+    color: #ddd;
+
+    transition: color 0.2s ease;
 }
 
-.footer-section ul li a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-.footer-section ul li a:hover {
+.footer-section a:hover {
     color: #fff;
 }
 
+
+/* =========================
+   PARTE INFERIOR
+========================= */
+
 .footer-bottom {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 30px auto 0;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #666;
+
     text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid #444;
-    margin-top: 20px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+    .footer {
+        padding: 35px 30px 20px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: flex-start;
+
+        gap: 40px;
+    }
+
+    .footer-section {
+        flex: 1;
+    }
+
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 1024px) {
+
+    .footer {
+        padding: 40px 50px 20px;
+    }
+
+    .footer-container {
+        gap: 60px;
+    }
+
 }
